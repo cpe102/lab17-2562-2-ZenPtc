@@ -14,9 +14,8 @@ string tolower_for_str(string a){
 }
 
 int main(){
-    vector<string> name;
+    vector<string> name,grade;
     vector<double> total;
-    vector<string> grade;
     ifstream source("C:/Users/wisaTong/Desktop/ComPro/Lab/lab17-2562-2-ZenPtc/name_score.txt");
     string textline,fuser;
     char namae[100];
@@ -39,37 +38,40 @@ int main(){
         count++;
     }
     while(true){
-    cout << "Please input your command : ";
-    getline(cin,fuser);
-    bool check = 0 ;
+        cout << "Please input your command : ";
+        getline(cin,fuser);
+        bool check = 0 ;
 
-    fuser = tolower_for_str(fuser);
-    if(fuser.substr(0,5)=="name "){
-        fuser.erase(0,5);
-        for(int i=0;i<count;i++){
-            if(tolower_for_str(name[i])==fuser){
-                cout << name[i] << "'s grade = " << grade[i];
-                check = 1;
+        fuser = tolower_for_str(fuser);
+        if(fuser.substr(0,5)=="name "){
+            fuser.erase(0,5);
+            cout << "---------------------------------" <<endl;
+            for(int i=0;i<count;i++){
+                if(tolower_for_str(name[i])==fuser){
+                    cout << name[i] << "'s grade = " << grade[i] << endl;
+                    check = 1;
+                }
             }
-        }
-        if (check == 0) {
-            cout << "Cannot found" << endl ;
-        }
-    }else if(fuser.substr(0,6)=="grade "){
-        fuser.erase(0,6);
-        for(int i=0;i<count;i++){
-            if(tolower_for_str(grade[i])==fuser){
-                cout << name[i] << endl;
-                check = 1;
+            if (check == 0) {
+                cout << "Cannot found" << endl ;
             }
-        }
-        if (check == 0) {
-            cout << "Cannot found" << endl ;
-        }
-    }else if(fuser.substr(0,4)=="exit"){
-        return 0 ;
-    }else cout << "Invalid command" << endl;
-
+            cout << "---------------------------------" <<endl;
+        }else if(fuser.substr(0,6)=="grade "){
+            fuser.erase(0,6);
+            cout << "---------------------------------" <<endl;
+            for(int i=0;i<count;i++){
+                if(tolower_for_str(grade[i])==fuser){
+                    cout << name[i] << endl;
+                    check = 1;
+                }
+            }
+            if (check == 0) {
+                cout << "Cannot found" << endl ;
+            }
+            cout << "---------------------------------" <<endl;
+        }else if(fuser.substr(0,4)=="exit"){
+            return 0 ;
+        }else cout << "Invalid command" << endl;
     }
     source.close();
 
